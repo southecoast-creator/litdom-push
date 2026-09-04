@@ -7,21 +7,9 @@
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
-    try {
-      await OneSignal.init({
-        appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
-      });
-
-      try {
-        const reg = await navigator.serviceWorker.register('/OneSignalSDKWorker.js');
-        alert("Manual SW register SUCCESS: " + reg.scope);
-      } catch (swErr) {
-        alert("Manual SW register FAILED: " + swErr.message);
-      }
-
-    } catch (err) {
-      alert("ERROR: " + err.message);
-    }
+    await OneSignal.init({
+      appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
+    });
   });
 </script>
 </head>
