@@ -11,13 +11,14 @@
       await OneSignal.init({
         appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
       });
-      const isPushSupported = OneSignal.Notifications.isPushSupported();
-      const permission = OneSignal.Notifications.permission;
-      const optedIn = OneSignal.User.PushSubscription.optedIn;
-      const subId = OneSignal.User.PushSubscription.id;
-      const registrations = await navigator.serviceWorker.getRegistrations();
-      let regInfo = registrations.map(r => r.scope).join(", ") || "NONE";
-      alert("Supported: " + isPushSupported + "\nPermission: " + permission + "\nOptedIn: " + optedIn + "\nSubID: " + subId + "\nSW Registrations: " + regInfo);
+
+      try {
+        const reg = await navigator.serviceWorker.register('/OneSignalSDKWorker.js');
+        alert("Manual SW register SUCCESS: " + reg.scope);
+      } catch (swErr) {
+        alert("Manual SW register FAILED: " + swErr.message);
+      }
+
     } catch (err) {
       alert("ERROR: " + err.message);
     }
