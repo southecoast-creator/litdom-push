@@ -95,8 +95,16 @@
     }
   </style>
 </head>
-<body style="font-family:sans-serif;text-align:center;padding:40px;">
-  <h2>Click the Subscribe Button Below</h2>
-  <p>Get notified about new chapters, updates, and more.</p>
+<body>
+  <div>
+    <div class="litdom-logo">Litdom</div>
+    <div class="card">
+      <p class="label">Litdom Notifications</p>
+      <h2>Click the Subscribe Button Below</h2>
+      <p class="sub">Get notified about new chapters, updates, and more — the moment they drop.</p>
+      <button class="subscribe" onclick="OneSignal.Slidedown.promptPush()">Subscribe</button>
+      <p class="note">You can turn this off anytime in your browser settings.</p>
+    </div>
+  </div>
 </body>
 </html>
