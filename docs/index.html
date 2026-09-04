@@ -11,6 +11,9 @@
       await OneSignal.init({
         appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
       });
+const registrations = await navigator.serviceWorker.getRegistrations();
+let regInfo = registrations.map(r => r.scope).join(", ") || "NONE";
+alert("Supported: " + isPushSupported + "\nPermission: " + permission + "\nOptedIn: " + optedIn + "\nSubID: " + subId + "\nSW Registrations: " + regInfo);
       const isPushSupported = OneSignal.Notifications.isPushSupported();
       const permission = OneSignal.Notifications.permission;
       const optedIn = OneSignal.User.PushSubscription.optedIn;
