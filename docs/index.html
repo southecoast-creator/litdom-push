@@ -2,17 +2,18 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Click the Subscribe Button Below</title>
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
+      });
     });
-  });
-</script>
-<style>
+  </script>
+  <style>
     body {
       margin: 0;
       min-height: 100vh;
