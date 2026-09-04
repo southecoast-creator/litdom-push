@@ -35,6 +35,7 @@
       font-size: 30px;
       color: #FFF8E7;
       margin-bottom: 26px;
+      text-align: center;
     }
 
     .card {
@@ -81,12 +82,11 @@
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease;
     }
 
-    button.subscribe:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(212,175,55,.20);
+    button.subscribe:disabled {
+      opacity: 0.7;
+      cursor: default;
     }
 
     .note {
@@ -103,9 +103,33 @@
       <p class="label">Litdom Notifications</p>
       <h2>Click the Subscribe Button Below</h2>
       <p class="sub">Get notified about new chapters, updates, and more — the moment they drop.</p>
-      <button class="subscribe" onclick="OneSignal.Slidedown.promptPush()">Subscribe</button>
+      <button class="subscribe" id="subscribe-btn">Subscribe</button>
       <p class="note">You can turn this off anytime in your browser settings.</p>
     </div>
   </div>
+
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+    OneSignalDeferred.push(function(OneSignal) {
+      const btn = document.getElementById('subscribe-btn');
+
+      function refreshButton() {
+        if (OneSignal.User.PushSubscription.optedIn) {
+          btn.textContent = "You're Subscribed ✓";
+          btn.disabled = true;
+        } else {
+          btn.textContent = "Subscribe";
+          btn.disabled = false;
+        }
+      }
+
+      refreshButton();
+
+      btn.addEventListener('click', function() {
+        OneSignal.Notifications.requestPermission().then(refreshButton);
+      });
+    });
+  </script>
 </body>
 </html>
