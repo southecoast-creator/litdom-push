@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <title>Subscribe to Litdom Updates</title>
   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-  <script>
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(async function(OneSignal) {
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    try {
       await OneSignal.init({
-        appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3"
+        appId: "c3e1803c-f30b-4439-8404-82b9e9a160e3",
       });
-    });
-  </script>
+      const isPushSupported = OneSignal.Notifications.isPushSupported();
+      const permission = OneSignal.Notifications.permission;
+      const optedIn = OneSignal.User.PushSubscription.optedIn;
+      const subId = OneSignal.User.PushSubscription.id;
+      alert("Supported: " + isPushSupported + "\nPermission: " + permission + "\nOptedIn: " + optedIn + "\nSubID: " + subId);
+    } catch (err) {
+      alert("ERROR: " + err.message);
+    }
+  });
+</script>
 </head>
 <body style="font-family:sans-serif;text-align:center;padding:40px;">
   <h2>Subscribe to Litdom Notifications</h2>
